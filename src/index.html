@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenWriter</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="main.js" defer></script>
+</head>
+<body>
+  <!-- Custom drag area for borderless window -->
+  <div class="drag-bar" data-tauri-drag-region></div>
+
+  <!-- Ambient background (animated gradient colors) -->
+  <div class="ambient-bg" id="ambient-bg"></div>
+
+  <div class="app-container">
+    
+    <!-- Sidebar / Settings Overlay (auto-fades during typing) -->
+    <aside class="sidebar" id="ui-sidebar">
+      <div class="sidebar-header">
+        <span class="logo-title">ZenWriter</span>
+      </div>
+
+      <div class="settings-section">
+        <span class="section-title">Tema</span>
+        <div class="theme-picker">
+          <button class="theme-btn active" data-theme="nord" title="Nordic Frost"></button>
+          <button class="theme-btn" data-theme="midnight" title="Midnight Velvet"></button>
+          <button class="theme-btn" data-theme="forest" title="Forest Zen"></button>
+          <button class="theme-btn" data-theme="monochrome" title="Monochrome"></button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <span class="section-title">Soundscape</span>
+        <div class="sound-row">
+          <label for="select-ambient">Ambiente</label>
+          <select id="select-ambient">
+            <option value="none">Nessuno</option>
+            <option value="rain">Pioggia Zen</option>
+            <option value="wind">Vento del Nord</option>
+            <option value="lofi">Mellow Synth Chords</option>
+          </select>
+        </div>
+        
+        <div class="sound-row volume-row" id="ambient-volume-container" style="display: none;">
+          <label for="range-volume">Volume</label>
+          <input type="range" id="range-volume" min="0" max="100" value="50" />
+        </div>
+
+        <div class="sound-row toggle-row">
+          <label for="checkbox-keyboard">Suono Tastiera</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="checkbox-keyboard" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="btn-export" class="sidebar-btn btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Esporta Testo
+        </button>
+      </div>
+    </aside>
+
+    <!-- Editor Workspace Area -->
+    <main class="editor-area">
+      <div class="editor-wrapper">
+        <textarea id="editor" placeholder="Inizia a scrivere la tua storia qui..."></textarea>
+      </div>
+
+      <!-- Bottom Status Bar (auto-fades during typing) -->
+      <footer class="status-bar" id="ui-status-bar">
+        <div class="status-left">
+          <span id="char-count">0 caratteri</span>
+          <span class="separator">•</span>
+          <span id="word-count">0 parole</span>
+        </div>
+        <div class="status-right">
+          <span id="save-status">Salvato in locale</span>
+        </div>
+      </footer>
+    </main>
+
+  </div>
+</body>
+</html>
