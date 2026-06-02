@@ -13,6 +13,9 @@
 
   <!-- Ambient background (animated gradient colors) -->
   <div class="ambient-bg" id="ambient-bg"></div>
+  
+  <!-- Interactive canvas for typing particles and zen ambient effects -->
+  <canvas id="particles-canvas" class="particles-canvas"></canvas>
 
   <div class="app-container">
     
@@ -22,6 +25,7 @@
         <span class="logo-title">ZenWriter</span>
       </div>
 
+      <!-- Theme Section -->
       <div class="settings-section">
         <span class="section-title">Tema</span>
         <div class="theme-picker">
@@ -32,29 +36,85 @@
         </div>
       </div>
 
+      <!-- Typography Section -->
       <div class="settings-section">
-        <span class="section-title">Soundscape</span>
+        <span class="section-title">Tipografia</span>
         <div class="sound-row">
-          <label for="select-ambient">Ambiente</label>
-          <select id="select-ambient">
-            <option value="none">Nessuno</option>
-            <option value="rain">Pioggia Zen</option>
-            <option value="wind">Vento del Nord</option>
-            <option value="lofi">Mellow Synth Chords</option>
+          <label for="select-font">Carattere</label>
+          <select id="select-font">
+            <option value="sans">Modern (Sans)</option>
+            <option value="serif">Classico (Serif)</option>
+            <option value="mono">Retro (Mono)</option>
           </select>
         </div>
-        
-        <div class="sound-row volume-row" id="ambient-volume-container" style="display: none;">
-          <label for="range-volume">Volume</label>
-          <input type="range" id="range-volume" min="0" max="100" value="50" />
+        <div class="sound-row font-size-row">
+          <label>Dimensione</label>
+          <div class="size-controls">
+            <button id="btn-font-dec" class="size-btn" title="Riduci carattere">—</button>
+            <span id="font-size-val">18px</span>
+            <button id="btn-font-inc" class="size-btn" title="Aumenta carattere">+</button>
+          </div>
         </div>
+      </div>
 
-        <div class="sound-row toggle-row">
-          <label for="checkbox-keyboard">Suono Tastiera</label>
+      <!-- Soundscape & Keyboard Section -->
+      <div class="settings-section">
+        <span class="section-title">Audio & Tasti</span>
+        <div class="sound-row">
+          <label for="checkbox-keyboard">Suono Tasti</label>
           <label class="toggle-switch">
             <input type="checkbox" id="checkbox-keyboard" checked />
             <span class="slider"></span>
           </label>
+        </div>
+        <div class="sound-row" id="keyboard-profile-container">
+          <label for="select-keyboard-profile">Tipo Click</label>
+          <select id="select-keyboard-profile">
+            <option value="classic">Meccanica</option>
+            <option value="chiclet">Chiclet (Soft)</option>
+            <option value="typewriter">Macchina Scrivere</option>
+          </select>
+        </div>
+        <div class="sound-row">
+          <label for="select-ambient">Sottofondo</label>
+          <select id="select-ambient">
+            <option value="none">Nessuno</option>
+            <option value="rain">Pioggia Zen</option>
+            <option value="wind">Vento del Nord</option>
+            <option value="lofi">Mellow Chords</option>
+          </select>
+        </div>
+        <div class="sound-row volume-row" id="ambient-volume-container" style="display: none;">
+          <label for="range-volume">Volume Ambiente</label>
+          <input type="range" id="range-volume" min="0" max="100" value="50" />
+        </div>
+      </div>
+
+      <!-- Writing Goal Section -->
+      <div class="settings-section">
+        <span class="section-title">Obiettivo Giornaliero</span>
+        <div class="sound-row">
+          <label for="input-goal">Parole Target</label>
+          <input type="number" id="input-goal" min="10" max="5000" value="200" step="50" class="sidebar-input" />
+        </div>
+        <div class="goal-progress-container">
+          <div class="goal-progress-bar" id="goal-progress-bar" style="width: 0%;"></div>
+        </div>
+        <span id="goal-percentage" class="stats-detail">0% completato</span>
+      </div>
+
+      <!-- Writing Stats Section -->
+      <div class="settings-section">
+        <span class="section-title">Sessione</span>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-val" id="stat-timer">00:00</span>
+            <span class="stat-label">Tempo</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val" id="stat-wpm">0</span>
+            <span class="stat-label">WPM</span>
+          </div>
         </div>
       </div>
 
