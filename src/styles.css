@@ -339,6 +339,8 @@ input:checked + .slider:before {
   caret-color: var(--accent-color);
   padding: 10px;
   transition: color 0.3s ease;
+  text-align: left !important;
+  margin: 0 !important;
 }
 
 #editor::placeholder {
