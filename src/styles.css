@@ -317,14 +317,14 @@ input:checked + .slider:before {
 .editor-wrapper {
   flex: 1;
   display: flex;
-  justify-content: center;
-  padding: 80px 40px 60px;
+  justify-content: flex-start;
+  padding: 80px 60px 60px;
   overflow-y: auto;
 }
 
 #editor {
   width: 100%;
-  max-width: 650px;
+  max-width: 90%;
   height: 100%;
   background: transparent;
   border: none;
