@@ -94,8 +94,10 @@ body {
   z-index: 1;
 }
 
-/* Sidebar Settings (Overlay on the left) */
 .sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 250px;
   height: 100%;
   background: var(--sidebar-bg);
@@ -106,7 +108,7 @@ body {
   flex-direction: column;
   padding: 60px 24px 28px; /* space for traffic lights */
   z-index: 10;
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   opacity: 1;
   transform: translateX(0);
 }
@@ -318,8 +320,9 @@ input:checked + .slider:before {
   flex: 1;
   display: flex;
   justify-content: flex-start;
-  padding: 80px 60px 60px;
+  padding: 80px 60px 60px 280px; /* 280px left padding to clear absolute sidebar */
   overflow-y: auto;
+  transition: padding-left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 #editor {
@@ -356,11 +359,11 @@ input:checked + .slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 24px 0 280px; /* offset to align with editor wrapper padding */
   font-size: 11px;
   color: var(--text-muted);
   font-weight: 400;
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), padding-left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 5;
 }
 
@@ -377,12 +380,17 @@ input:checked + .slider:before {
 .distraction-free .sidebar {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(-15px);
+  transform: translateX(-250px); /* slide sidebar off-screen left */
+}
+
+.distraction-free .editor-wrapper {
+  padding-left: 80px; /* slide editor writing column to the left */
 }
 
 .distraction-free .status-bar {
   opacity: 0;
   pointer-events: none;
+  padding-left: 80px;
 }
 
 /* ── Particles Canvas Overlay ── */
